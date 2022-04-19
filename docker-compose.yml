@@ -1,0 +1,36 @@
+version: "2"
+services:
+    web:
+        build: ./web-image
+        ports: 
+            - "8000:80"
+        volumes:
+            - ./www:/var/www/html/
+        links:
+            - db
+        # networks:
+        #     - default
+        hostname: test.b10704118.works
+    db:
+        image: mysql:5.7
+        environment:
+            MYSQL_DATABASE: myDb
+            MYSQL_USER: user
+            MYSQL_PASSWORD: PASSWORD_test
+            MYSQL_ROOT_PASSWORD: ROOT_PASSWORD_test
+        volumes:
+            - ./db:/docker-entrypoint-initdb.d
+        # networks:
+        #     - default
+        hostname: test.b10704118.works
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links: 
+            - db:db
+        ports:
+            - 8002:80
+        hostname: test.b10704118.works
+        environment:
+            MYSQL_USER: user
+            MYSQL_PASSWORD: PASSWORD_test
+            MYSQL_ROOT_PASSWORD: ROOT_PASSWORD_test
