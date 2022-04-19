@@ -36,5 +36,4 @@ CREATE TABLE `title` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-INSERT INTO `users` (`id`, `username`, `password`,`name`) VALUES ("1", "test", "123","aaa");
 INSERT INTO `title` (`name`) VALUES ("留言板"); 
